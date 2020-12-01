@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<section class="container-fluid top" id="home">
+    <div class="container">
+      <div class="slogan">
+        <h1>¡Se ha ingresado con éxito!</h1>
+        <p>Puedes editar o eliminar tu entrada</p>
+      </div>
+    </div>
+</section>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+<br>
+<header class="masthead">
+  {% if user.is_authenticated  %}
+    <div class="container d-flex flex-column">
+        <h1 class="page-section-heading text-uppercase text-secondary mb-0" > {{formulario.problema}}             
+        </h1>
+        <div class="col-md-8" style="margin-top: 5%;">
+        <h3 class="descripcion text-secondary">Edad:</h3>
+          <p class="texto">{{formulario.edad}}</p>
+        <h3 class="descripcion text-secondary">Curso:</h3>
+          <p class="texto">{{formulario.cursos}}</p>
+        <h3 class="descripcion text-secondary">Correo electrónico:</h3>
+          <p class="texto">{{formulario.correo}}</p>
+        <h3 class="descripcion text-secondary">Descripción:</h3>
+          <p class="texto">{{formulario.detalle}}</p>
+        <h3 class="descripcion text-secondary">¿Le informó a un adulto?</h3>
+          <p class="texto">{{formulario.reporte}}</p>
+        <br>
+        
+
+
+
+        <a class="btn btn-info" href="{% url 'formulario_update' pk=formulario.pk %}"><i class="fas fa-edit"> Editar </i>   <span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-danger" href="{% url 'formulario_delete' pk=formulario.pk %}"><i class="fas fa-trash"> Eliminar</i><span class="glyphicon glyphicon-trash"></span></a>     
+        </div>     
+    </div>
+    <br>
+    {% else %}<div class="container">
+      <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Usted no tiene los permisos necesarios para realizar esta acción!!</p>
+          </div>
+  {% endif %}
+</div>
+</header>
+
+
+{% endblock %}

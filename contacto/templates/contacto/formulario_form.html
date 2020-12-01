@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+{% load static %}
+  <!--Iconos-->
+  <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+
+  {% if user.is_authenticated  %}
+  <!-- Slogan sobre foto -->
+  <section class="container-fluid top" id="home">
+    <div class="container">
+      <div class="slogan">
+        <h1>¡Realiza tu Denuncia Anonima!</h1>
+      </div>
+    </div>
+  </section>
+
+<section class="page-section masthead" id="contact">
+          <!--===============================================================================================-->
+        <br>
+         <div class="container">
+                  <!-- Contact Section Heading -->
+          <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"> Formulario de Denuncias </h2>
+            
+          <!-- Contact Section Form -->
+          <div class="row">
+          <div class="col-lg-8 mx-auto">
+        
+    <p></p>
+    <form method="POST" class="post-form">{% csrf_token %}
+            <div style="font-size: 12px;">
+                {{ form.as_p }}
+            </div>   
+        <button type="submit" class="save btn btn-success" >  Enviar </button>
+        <br>
+    </form>
+    
+</div>
+</div>
+</div>
+<br>
+{% else %}
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+<div class="maefondo">
+  <div class="hero-text">
+    <h1>¡REALIZA TU DENUNCIA ANONIMA!</h1>
+    <p>¡Usted no tiene los permisos necesarios para realizar esta acción! Por favor, Inicia Sesión.</p>
+    <a href="{% url 'login' %}"><button>Iniciar sesión</button></a>
+  </div>
+</div>
+{% endif %}
+</section>
+{% endblock %}

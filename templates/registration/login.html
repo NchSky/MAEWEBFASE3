@@ -1,0 +1,36 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+<div class="fondologin">
+  <div class="hero-text">
+    <h1>Identificate</h1>
+    <p>Bienvenido a MaeWebSite </p>
+    <h2>Login</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      {% if form.errors %}
+      <p style="color: red; font-size: 10px;">Usuario y/o contraseña incorrecto. Inténtalo de nuevo.</p>
+      {% endif %}
+      
+      <div>
+        <td > <label class="label">Usuario</label> </td>
+        <p></p>
+        <td>{{ form.username }}</td>
+      </div>
+      <br>
+      <div>
+        <td > <label class="label">Contraseña</label> </td>
+        <p></p>
+        <td>{{ form.password }}</td>
+      </div>
+      <br>
+      <button type="submit">Confirmar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
